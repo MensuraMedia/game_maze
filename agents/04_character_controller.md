@@ -16,9 +16,12 @@ Implements smooth first-person movement, camera, and player physics.
 - Handle collision with maze walls cleanly (no jittering, no clipping)
 
 ## Deliverables
-- `Source/MazeGame/MazeCharacter.h/.cpp` — Player character class
-- `Content/Input/IA_Move, IA_Look` — Input actions
-- `Content/Input/IMC_Default` — Input mapping context
+- `game_maze/Source/MazeGame/MazeCharacter.h/.cpp` — Player character class
+- `game_maze/Content/Input/Actions/` — Input actions (already exists from FP template)
+- `game_maze/Content/Input/IMC_Default` — Input mapping context
+
+> **UE5 Project Path:** `D:\documents\Unreal Projects\game_maze`
+> **Note:** First Person template is already set up with base character and input bindings.
 
 ## Dependencies
 - Agent 02 (GDD for movement spec — speed, abilities)

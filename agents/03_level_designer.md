@@ -16,9 +16,11 @@ Designs or generates the 3D maze layout, ensures solvability, and creates spatia
 - Generate maze as UE Actors (instanced static meshes for walls/floors)
 
 ## Deliverables
-- `Source/MazeGame/MazeGenerator.h/.cpp` — Core maze generation class
-- `Content/Blueprints/BP_MazeGenerator` — Blueprint wrapper (if needed)
+- `game_maze/Source/MazeGame/MazeGenerator.h/.cpp` — Core maze generation class
+- `game_maze/Content/Blueprints/BP_MazeGenerator` — Blueprint wrapper (if needed)
 - Maze configuration data asset (rows, cols, cell size, seed)
+
+> **UE5 Project Path:** `D:\documents\Unreal Projects\game_maze`
 
 ## Dependencies
 - Agent 02 (GDD for maze size/difficulty requirements)

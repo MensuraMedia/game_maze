@@ -17,10 +17,12 @@ Handles NavMesh generation, pathfinding validation, and optional NPC/enemy AI.
 - Tune NavMesh parameters for tight corridor navigation
 
 ## Deliverables
-- `Content/AI/BT_Enemy` — Enemy behavior tree (if scoped)
-- `Content/AI/BB_Enemy` — Enemy blackboard
-- `Source/MazeGame/MazeNavigationValidator.h/.cpp` — Path validator
+- `game_maze/Content/AI/BT_Enemy` — Enemy behavior tree (if scoped)
+- `game_maze/Content/AI/BB_Enemy` — Enemy blackboard
+- `game_maze/Source/MazeGame/MazeNavigationValidator.h/.cpp` — Path validator
 - NavMesh configuration preset for maze geometry
+
+> **UE5 Project Path:** `D:\documents\Unreal Projects\game_maze`
 
 ## Dependencies
 - Agent 03 (maze must be generated before NavMesh can build)

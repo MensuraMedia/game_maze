@@ -18,11 +18,13 @@ Builds all user interface elements: HUD, menus, minimap, and handles final polis
 - Polish: screen transitions, UI animations, button feedback
 
 ## Deliverables
-- `Content/UI/WBP_HUD` — Main gameplay HUD widget
-- `Content/UI/WBP_Minimap` — Minimap widget
-- `Content/UI/WBP_MainMenu` — Main menu
-- `Content/UI/WBP_PauseMenu` — Pause menu
-- `Content/UI/WBP_WinScreen` / `WBP_LoseScreen` — Outcome screens
+- `game_maze/Content/UI/WBP_HUD` — Main gameplay HUD widget
+- `game_maze/Content/UI/WBP_Minimap` — Minimap widget
+- `game_maze/Content/UI/WBP_MainMenu` — Main menu
+- `game_maze/Content/UI/WBP_PauseMenu` — Pause menu
+- `game_maze/Content/UI/WBP_WinScreen` / `WBP_LoseScreen` — Outcome screens
+
+> **UE5 Project Path:** `D:\documents\Unreal Projects\game_maze`
 
 ## Dependencies
 - Agent 02 (GDD for UI requirements)

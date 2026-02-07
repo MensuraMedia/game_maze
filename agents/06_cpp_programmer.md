@@ -17,10 +17,12 @@ Writes performance-critical C++ code, custom engine classes, and Blueprint-expos
 - Set up GameMode, GameState, and PlayerState classes
 
 ## Deliverables
-- `Source/MazeGame/MazeGameMode.h/.cpp` — Game mode with rules
-- `Source/MazeGame/MazeGameState.h/.cpp` — Shared game state
-- `Source/MazeGame/MazePlayerState.h/.cpp` — Per-player state
-- `Source/MazeGame/MazeSolver.h/.cpp` — Pathfinding validator
+- `game_maze/Source/MazeGame/MazeGameMode.h/.cpp` — Game mode with rules
+- `game_maze/Source/MazeGame/MazeGameState.h/.cpp` — Shared game state
+- `game_maze/Source/MazeGame/MazePlayerState.h/.cpp` — Per-player state
+- `game_maze/Source/MazeGame/MazeSolver.h/.cpp` — Pathfinding validator
+
+> **UE5 Project Path:** `D:\documents\Unreal Projects\game_maze`
 
 ## Dependencies
 - Agent 02 (GDD for game rules)

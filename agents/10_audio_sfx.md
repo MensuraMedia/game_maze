@@ -17,11 +17,13 @@ Implements all audio: footsteps, ambient sounds, spatial audio, and music cues.
 - Set up sound attenuation for realistic echo in corridors
 
 ## Deliverables
-- `Content/Audio/SC_Footstep_*` — Surface-specific footstep cues
-- `Content/Audio/SC_Ambient_Maze` — Ambient soundscape
-- `Content/Audio/SC_Collectible` — Pickup sound
-- `Content/Audio/SC_Win` / `SC_Lose` — Outcome stings
-- `Source/MazeGame/FootstepComponent.h/.cpp` — Surface detection component
+- `game_maze/Content/Audio/SC_Footstep_*` — Surface-specific footstep cues
+- `game_maze/Content/Audio/SC_Ambient_Maze` — Ambient soundscape
+- `game_maze/Content/Audio/SC_Collectible` — Pickup sound
+- `game_maze/Content/Audio/SC_Win` / `SC_Lose` — Outcome stings
+- `game_maze/Source/MazeGame/FootstepComponent.h/.cpp` — Surface detection component
+
+> **UE5 Project Path:** `D:\documents\Unreal Projects\game_maze`
 
 ## Dependencies
 - Agent 04 (character for footstep triggering)

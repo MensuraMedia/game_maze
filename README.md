@@ -8,50 +8,40 @@ The player navigates a procedurally generated 3D maze from a first-person perspe
 
 ## Project Structure
 
+### Planning Repo (`D:\projects\maze`)
 ```
 maze/
-├── agents/                    # Agent role definitions (AI-driven workflow)
+├── agents/                    # Agent role definitions (12 agents)
 │   ├── 00_conductor.md        # Top-level orchestrator
 │   ├── 01_team_lead.md        # Technical lead & task manager
-│   ├── 02_game_director.md    # Game vision & design
-│   ├── 03_level_designer.md   # Procedural maze generation
-│   ├── 04_character_controller.md  # FPS movement & camera
-│   ├── 05_blueprint_agent.md  # Visual scripting & prototyping
-│   ├── 06_cpp_programmer.md   # C++ systems & performance
-│   ├── 07_environment_artist.md    # 3D assets & materials
-│   ├── 08_ai_navigation.md    # NavMesh & pathfinding
-│   ├── 09_lighting_atmosphere.md   # Lighting, fog, post-process
-│   ├── 10_audio_sfx.md        # Sound design & spatial audio
-│   ├── 11_ui_ux.md            # UI widgets, menus, minimap
-│   └── agent_dependency_graph.md   # Agent execution order
+│   ├── 02–11_*.md             # Specialist agents (see Agent Workflow)
+│   └── agent_dependency_graph.md
 ├── tasks/                     # Sprint planning & tracking
 │   ├── sprint_board.md        # Active sprint task board
 │   └── decisions_log.md       # Technical decisions record
-├── skills/                    # Reusable skill definitions
-│   ├── skill_procedural_maze_gen.md  # Maze generation skill
-│   ├── skill_fps_controller.md       # Character controller skill
-│   ├── skill_minimap.md              # Minimap system skill
-│   ├── skill_collectibles.md         # Collectible system skill
-│   ├── skill_win_lose.md             # Win/lose conditions skill
-│   ├── skill_atmosphere.md           # Atmosphere setup skill
-│   └── skill_audio_footsteps.md      # Footstep audio skill
+├── skills/                    # Reusable skill definitions (7 skills)
 ├── docs/                      # Design documents & references
-├── Source/MazeGame/           # C++ source code
-├── Content/                   # UE5 content assets
-│   ├── Blueprints/            # Blueprint assets
-│   ├── Meshes/                # Static meshes (walls, floors, etc.)
-│   ├── Materials/             # Materials & material instances
-│   ├── UI/                    # UMG widget Blueprints
-│   ├── Audio/                 # Sound cues & audio assets
-│   ├── Lighting/              # Light Blueprint actors
-│   ├── PostProcess/           # Post-processing profiles
-│   ├── Input/                 # Input actions & mapping contexts
-│   └── AI/                    # Behavior trees & blackboards
-├── Config/                    # UE5 config files (DefaultEngine.ini, etc.)
-├── Scripts/                   # Build & automation scripts
-├── Tests/                     # Test plans & automated tests
 ├── CLAUDE.md                  # Claude Code project instructions
+├── README.md                  # This file
 └── 001_maze_guide.md          # Original development guide
+```
+
+### UE5 Project (`D:\documents\Unreal Projects\game_maze`)
+```
+game_maze/
+├── game_maze.uproject         # Unreal project file
+├── Config/                    # Engine & project config
+├── Content/
+│   ├── FirstPerson/           # FP template (Anims, Blueprints)
+│   ├── Characters/Mannequins/ # Mannequin assets, materials, textures
+│   ├── Input/Actions/         # Enhanced Input actions
+│   ├── LevelPrototyping/      # Prototype meshes, interactables
+│   ├── DemoTemplate/          # Samples (Niagara, Metasounds, etc.)
+│   └── ...                    # New game content goes here
+├── Source/                    # C++ source (to be created)
+├── Intermediate/              # Build intermediates (not in VCS)
+├── DerivedDataCache/          # Cached data (not in VCS)
+└── Saved/                     # Local saves (not in VCS)
 ```
 
 ## Agent Workflow
@@ -89,6 +79,21 @@ This project uses 12 specialized AI agents organized in a hierarchy:
 - **AI Tooling:** Claude (code generation, design assistance, debugging)
 - **Version Control:** Git
 
+## File Locations
+
+| What | Path |
+|------|------|
+| **This repo** (planning, agents, tasks, skills, docs) | `D:\projects\maze` |
+| **UE5 project** (engine files, Content, Source, Configs) | `D:\documents\Unreal Projects\game_maze` |
+| **UE5 project file** | `D:\documents\Unreal Projects\game_maze\game_maze.uproject` |
+
+The UE5 project was created from the **First Person** template and already includes:
+- First Person character Blueprints and animations (`Content/FirstPerson/`)
+- Mannequin character assets (`Content/Characters/Mannequins/`)
+- Enhanced Input System actions (`Content/Input/Actions/`)
+- Level prototyping meshes and materials (`Content/LevelPrototyping/`)
+- Demo template content including Niagara, Metasounds, and Sequencer samples
+
 ## Skills (Reusable Capabilities)
 
 | Skill | Description |
@@ -103,10 +108,10 @@ This project uses 12 specialized AI agents organized in a hierarchy:
 
 ## Getting Started
 
-1. Clone this repository
-2. Open the UE5 project (or create from First Person template and import Source/Content)
-3. Build C++ in Visual Studio 2022
-4. Open the UE Editor and play in editor
+1. Clone this repository to `D:\projects\maze`
+2. Open the UE5 project at `D:\documents\Unreal Projects\game_maze\game_maze.uproject`
+3. Build C++ via Visual Studio 2022 (generate project files from .uproject if needed)
+4. Play in editor to verify First Person template works
 5. Refer to `agents/` for role-specific development guidance
 6. Track progress in `tasks/sprint_board.md`
 
