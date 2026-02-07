@@ -37,6 +37,13 @@ the Conductor's strategic direction and the specialist agents' execution.
 - No hardcoded values — expose to editor via UPROPERTY / Blueprint variables
 - All systems must support hot-reload during development
 
+## Editor Interface Oversight
+- Instruct agents to discover UE features via console commands, Python introspection, and docs
+- Guide agents to enable required plugins (Python scripting, Remote Control API, PCG)
+- Assign agents to populate `docs/UE_Interface_Reference.md` per their expertise
+- Ensure all agent outputs include executable code (Python, C++, or Blueprint instructions)
+- Maintain `docs/python_automation_templates.md` with reusable scripts
+
 ## Reports To
 Conductor (Agent 00)
 

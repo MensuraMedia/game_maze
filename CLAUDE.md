@@ -21,6 +21,13 @@ This project uses a multi-agent workflow. See `agents/` for role definitions.
 - **Team Lead** (`agents/01_team_lead.md`) — manages sprint tasks, tracks progress
 - Specialist agents (`agents/02–11`) handle domain-specific work
 
+## Editor Interface
+All agents must interface with the UE Editor programmatically where possible.
+- **Interface Reference:** `docs/UE_Interface_Reference.md` — comprehensive API/tool reference
+- **Interface Directives:** `docs/agent_interface_directives.md` — mandatory agent behavior
+- **Python Templates:** `docs/python_automation_templates.md` — ready-to-use automation scripts
+- Primary methods: Python scripting, C++ APIs, Blueprints, Remote Control API, Console commands
+
 ## Task Tracking
 Task breakdowns live in `tasks/`. The Team Lead maintains the active sprint board.
 
