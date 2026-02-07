@@ -57,4 +57,5 @@
 - Maze theme variations (dungeon, sci-fi, garden)
 
 ---
-*To be expanded by Agent 02 (Game Director)*
+*Superseded by `docs/GDD.md` — the full Game Design Document.*
+*See also `docs/gameplay_loop.md` for detailed loop breakdown.*
