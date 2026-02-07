@@ -6,9 +6,9 @@
 |----|-------|-------|--------|--------|------------|
 | T-001 | Write Game Design Document | 02 Game Director | **Done** | T-002–T-010 | — |
 | T-002 | Validate UE5 project setup | 01 Team Lead | **Done** | T-003–T-010 | T-001 |
-| T-003 | Implement procedural maze generator (C++) | 03 Level Design + 06 C++ | Pending | T-005, T-006, T-008 | T-001, T-002 |
-| T-004 | Set up player character controller | 04 Character Controller | Pending | T-006, T-009 | T-001, T-002 |
-| T-005 | Create modular wall/floor/ceiling assets | 07 Environment | Pending | T-003 (runtime), T-007 | T-001 |
+| T-003 | Implement procedural maze generator (C++) | 03 Level Design + 06 C++ | **Done** | T-005, T-006, T-008 | T-001, T-002 |
+| T-004 | Set up player character controller | 04 Character Controller | **Done** | T-006, T-009 | T-001, T-002 |
+| T-005 | Create modular wall/floor/ceiling assets | 07 Environment | **Done** | T-003 (runtime), T-007 | T-001 |
 
 ## Sprint 2: Gameplay Loop
 
