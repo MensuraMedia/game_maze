@@ -1,0 +1,2 @@
+# This file documents empty directories that need .gitkeep files.
+# Git does not track empty directories, so .gitkeep files preserve them.
