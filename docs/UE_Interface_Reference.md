@@ -280,52 +280,195 @@ config = unreal.ConfigUtilities
 
 ## 3. Hotkey Reference
 
-### 3.1 Viewport Navigation
+> **Full source:** `shortcut_keys_reference.md` (400+ shortcuts)
+> **Per-agent summaries:** `docs/agent_shortcut_reference.md`
+> **Customize:** Edit > Editor Preferences > Keyboard Shortcuts
+> **Export:** Click "Export" in Keyboard Shortcuts to save as `.KeyBindings` file
+
+### 3.1 Global / Common Editing
 
 | Key | Action |
 |-----|--------|
-| `W` | Translate mode |
-| `E` | Rotate mode |
-| `R` | Scale mode |
-| `F` | Focus on selected actor |
-| `Alt + G` | Play In Editor (PIE) |
-| `Esc` | Stop PIE |
-| `End` | Snap actor to floor |
-| `Ctrl + Drag` | Duplicate selected |
-| `G` | Toggle game view (hide editor icons) |
-| `F11` | Fullscreen viewport |
-
-### 3.2 General Editor
-
-| Key | Action |
-|-----|--------|
-| `Ctrl + S` | Save current level |
-| `Ctrl + Shift + S` | Save all |
 | `Ctrl + Z` | Undo |
 | `Ctrl + Y` | Redo |
-| `Ctrl + N` | New level/asset |
-| `Ctrl + F` | Search in Content Browser |
-| `Ctrl + B` | Find asset in Content Browser |
-| `Ctrl + Alt + F11` | Hot reload C++ |
+| `Ctrl + C / X / V` | Copy / Cut / Paste |
+| `Ctrl + W` / `Ctrl + D` | Duplicate |
+| `Delete` / `Backspace` | Delete selected |
+| `Ctrl + A` | Select All |
+| `F2` | Rename |
+| `Ctrl + S` | Save |
+| `Ctrl + Shift + S` | Save All |
+| `Ctrl + Alt + S` | Save As... |
+| `Ctrl + N` | New Level/Folder |
+| `Ctrl + O` | Open Level |
+| `Esc` | Deselect All / Cancel |
 
-### 3.3 Blueprint Editor
-
-| Key | Action |
-|-----|--------|
-| `Ctrl + E` | Open Blueprint editor (double-click also works) |
-| `F7` | Compile Blueprint |
-| `C` | Add comment box around selected nodes |
-| `Right-Click` | Context-sensitive node search |
-| `Ctrl + Shift + F` | Search across all Blueprints |
-
-### 3.4 Build & Lighting
+### 3.2 Viewport Navigation & Camera
 
 | Key | Action |
 |-----|--------|
-| `Ctrl + Alt + L` | Rebuild lighting |
-| `Build` menu | Full rebuild (geometry, lighting, navigation, etc.) |
+| `RMB + WASD` | Move camera (GameStyle) |
+| `RMB + QE` | Camera Up/Down |
+| `RMB Drag` | Orbit / Pan |
+| `Mouse Wheel` | Zoom |
+| `Alt + LMB` | Orbit around selection |
+| `Alt + RMB` | Dolly (zoom) |
+| `RMB + Mouse Wheel` | Adjust camera speed |
+| `Home` | Zoom to Fit |
+| `F` | Focus on selected actor |
 
-**Custom Hotkeys:** Edit > Editor Preferences > Keyboard Shortcuts
+### 3.3 Transformation Tools
+
+| Key | Action |
+|-----|--------|
+| `Q` | Select Mode |
+| `W` | Translate/Move |
+| `E` | Rotate |
+| `R` | Scale |
+| `Space` | Cycle Tools (Q→W→E→R) |
+| `Alt + Drag` | Duplicate + Transform |
+| `` Ctrl + ` `` | Cycle Coord System (World/Local) |
+
+### 3.4 Editor Modes
+
+| Key | Action |
+|-----|--------|
+| `Shift + 1` | Place/Select |
+| `Shift + 2` | Landscape |
+| `Shift + 3` | Foliage |
+| `Shift + 4` | Mesh Paint |
+| `Shift + 5` | Modeling |
+| `Shift + 6` | Fracture |
+| `Shift + 7` | Brush Editing |
+| `Shift + 8` | Animation |
+
+### 3.5 View Modes
+
+| Key | Action |
+|-----|--------|
+| `Alt + 1` | Value (default) |
+| `Alt + 2` | Wireframe |
+| `Alt + 3` | Unlit |
+| `Alt + 4` | Lit |
+| `Alt + 5` | Detail Lighting |
+| `Alt + 6` | Lighting Only |
+| `Alt + 7` | Light Complexity |
+| `Alt + 8` | Shader Complexity |
+| `Alt + 0` | Lightmap Density |
+
+### 3.6 Camera Views & Bookmarks
+
+| Key | Action |
+|-----|--------|
+| `Alt + G` | Perspective |
+| `Alt + H` | Front |
+| `Alt + J` | Top |
+| `Alt + K` | Left |
+| `Alt + Shift + J` | Bottom |
+| `Alt + Shift + K` | Right |
+| `Alt + Shift + H` | Back |
+| `Ctrl + 0-9` | Set Bookmark |
+| `0-9` | Jump to Bookmark |
+
+### 3.7 Selection, Visibility & Snapping
+
+| Key | Action |
+|-----|--------|
+| `Ctrl + Shift + A` | Select All of Class/Mesh |
+| `Shift + E` | Select Matching Actors |
+| `H` | Hide Selected |
+| `Ctrl + H` | Unhide All |
+| `T` | Translucent Selection |
+| `G` | Toggle Game View |
+| `End` | Snap to Floor |
+| `Alt + End` | Snap Pivot to Floor |
+| `Shift + End` | Snap Bounds to Floor |
+| `Ctrl + End` | Snap to Grid |
+| `[` / `]` | Decrease / Increase Grid Size |
+| `Shift + [` / `]` | Decrease / Increase Rotation Snap |
+| `V` | Vertex Snapping (hold + drag) |
+
+### 3.8 Play, Simulate & Debug
+
+| Key | Action |
+|-----|--------|
+| `Alt + P` | Play (PIE) |
+| `Alt + S` | Simulate |
+| `F8` | Possess Player / Eject |
+| `Pause` | Pause |
+| `Esc` | Stop PIE |
+| `F9` | Screenshot |
+| `F11` | Immersive Mode |
+| `Shift + F11` | Fullscreen Editor |
+| `Ctrl + Shift + H` | Toggle FPS |
+| `Shift + L` | Toggle Stats |
+| `~` (tilde) | Console |
+| `Ctrl + Shift + ,` | GPU Profiler |
+
+### 3.9 Content Browser & Assets
+
+| Key | Action |
+|-----|--------|
+| `Ctrl + P` | Search Project |
+| `Ctrl + B` | Browse to Asset |
+| `Ctrl + E` | Edit Selected Asset |
+| `Space` | Preview Asset |
+| `Enter` | Open Asset/Folder |
+| `Ctrl + Shift + N` | New Folder |
+| `Alt + Shift + A` | Audit Assets |
+| `Alt + Shift + R` | Reference Viewer |
+| `Alt + Shift + M` | Size Map |
+
+### 3.10 Blueprint Editor
+
+| Key | Action |
+|-----|--------|
+| `F7` | Compile |
+| `Ctrl + F` | Find in Blueprint |
+| `Ctrl + Shift + F` | Find in All Blueprints |
+| `Home` | Zoom to Fit |
+| `RMB Drag` | Pan Graph |
+| `Page Up/Dn` | Parent/Child Graph |
+| `B + Click` | Branch |
+| `S + Click` | Sequence |
+| `D + Click` | Delay |
+| `F + Click` | ForEach Loop |
+| `C + Click` | Comment |
+| `F9` | Toggle Breakpoint |
+| `Ctrl + Shift + F9` | Clear All Breakpoints |
+| `Alt + Click (pin)` | Break Link |
+
+### 3.11 Material & Mesh Editors
+
+| Key | Action |
+|-----|--------|
+| `I` | Toggle Environment |
+| `O` | Toggle Floor |
+| `P` | Toggle Post Process |
+| `Ctrl + N` | Nanite Fallback (Static Mesh) |
+| `Alt + N` | Toggle Normals |
+| `Alt + S` | Toggle Sockets |
+
+### 3.12 Modeling Mode (Shift + 5)
+
+| Key | Action |
+|-----|--------|
+| `Enter` | Accept/Complete |
+| `Esc` | Cancel |
+| `A` | Toggle Gizmo |
+| `[ / ]` | Brush Size +/- |
+| `Ctrl + [ / ]` | Brush Strength +/- |
+| `T` | Flip Selection |
+| `E` | Extrude |
+| `Q` | Push/Pull |
+
+### 3.13 Build & Compilation
+
+| Key | Action |
+|-----|--------|
+| `Ctrl + Alt + F11` | Hot Reload C++ (Live Coding) |
+| `Ctrl + Alt + L` | Rebuild Lighting |
+| `Build` menu | Full rebuild (geometry, lighting, navigation) |
 
 **AutoHotkey Integration:** Agents may generate AHK scripts for complex sequences:
 ```ahk
@@ -335,7 +478,7 @@ config = unreal.ConfigUtilities
     Sleep, 500
     Send, ^!{F11}     ; Hot reload
     Sleep, 2000
-    Send, !g          ; Play in editor
+    Send, !p          ; Play in editor
 return
 ```
 
@@ -496,19 +639,26 @@ When a needed feature or API is unknown:
 
 ## 7. Agent-Specific Quick Reference
 
-| Agent | Primary Interfaces |
-|-------|--------------------|
-| 03 Level Designer | Python Scripting, PCG Framework, C++ APIs |
-| 04 Character Controller | C++ (ACharacter), Enhanced Input, Blueprints |
-| 05 Blueprint Agent | Blueprint Editor, Timelines, UMG |
-| 06 C++ Programmer | Visual Studio, C++ APIs, Hot Reload |
-| 07 Environment Artist | Content Browser, Material Editor, Python import |
-| 08 AI & Navigation | NavMesh, Behavior Trees, Console (`RebuildNavigation`) |
-| 09 Lighting | Lumen settings, Post-Process, Console (`r.Lumen.*`) |
-| 10 Audio | MetaSounds, Sound Cues, Attenuation settings |
-| 11 UI/UX | UMG Widget Editor, Blueprints, Remote Control |
+| Agent | Primary Interfaces | Key Shortcuts |
+|-------|--------------------|---------------|
+| 00 Conductor | Integration testing, PIE, console | `Alt+P`, `stat fps`, `stat unit` |
+| 01 Team Lead | Build, review, asset audit | `Ctrl+Alt+F11`, `Alt+Shift+R` |
+| 02 Game Director | Play-testing, design tuning | `Alt+P`, `slomo`, `ghost`, `god` |
+| 03 Level Designer | Actor placement, grid snap, PCG | `W/E/R`, `End`, `[/]`, `Alt+J` |
+| 04 Character Controller | Movement debug, collision | `show collision`, `showdebug MOVEMENT` |
+| 05 Blueprint Agent | Blueprint Editor, node creation | `F7`, `B+Click`, `F9`, `C+Click` |
+| 06 C++ Programmer | VS2022, Hot Reload, profiling | `Ctrl+Alt+F11`, `profilegpu`, `stat` |
+| 07 Environment Artist | Content Browser, Material Editor | `Ctrl+P`, `Alt+N`, `Shift+5` |
+| 08 AI & Navigation | NavMesh, AI debug | `RebuildNavigation`, `show navigation` |
+| 09 Lighting | View modes, Lumen, fog | `Alt+4/5/6`, `r.Lumen.*`, `r.VolumetricFog` |
+| 10 Audio | Sound debug, spatial audio | `au.Debug.Sounds`, `stat audio` |
+| 11 UI/UX | Widget editor, HUD debug | `F7`, `G`, `show hud`, `stat slate` |
+
+> **Detailed per-agent shortcuts:** See `docs/agent_shortcut_reference.md`
+> **Console commands by domain:** See `docs/console_commands_reference.md`
 
 ---
 
 *Maintained collaboratively by all agents. Version-controlled via Git.*
 *Update by appending discoveries as new sections or expanding existing ones.*
+*Last updated: 2026-02-07*
