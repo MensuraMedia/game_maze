@@ -25,7 +25,7 @@
 | ID | Task | Agent | Status | Blocks | Blocked By |
 |----|-------|-------|--------|--------|------------|
 | T-011 | Build HUD (timer, score, crosshair) | 11 UI/UX | **Done** | T-012 | T-010 |
-| T-012 | Implement minimap system | 11 UI/UX | **In Progress** | — | T-003, T-011 |
+| T-012 | Implement minimap system | 11 UI/UX | **Done** | — | T-003, T-011 |
 | T-013 | Create main menu & pause menu | 11 UI/UX | **Done** | — | T-010 |
 | T-014 | Add ambient audio & sound effects | 10 Audio | **Done** | — | T-007 |
 | T-015 | Post-processing & visual polish | 09 Lighting | **Done** | — | T-007 |
