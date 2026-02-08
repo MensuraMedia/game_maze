@@ -140,27 +140,105 @@ powershell -Command "Get-Content '...game_maze.log' | Select-String 'Game class 
 
 ## 3. Producing and Managing Scripts
 
-### 3.1 Script Production Workflow
+### 3.1 Starting Point: End-to-End Flow
+
+This is the complete sequence from the AI's perspective. Every editor interaction
+follows this pattern.
+
+**Step A — AI creates the script file on disk:**
+
+The AI uses its file-writing tools (Write tool, or PowerShell) to create a `.py`
+script in the UE project's Python directory:
+
+```powershell
+# PowerShell: Write a Python script to disk
+powershell -Command "Set-Content -Path 'D:\documents\Unreal Projects\game_maze\Content\Python\my_action.py' -Value @'
+import unreal
+
+# Your automation logic here
+sub = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
+actors = sub.get_all_level_actors()
+unreal.log(f'Found {len(actors)} actors in level')
+'@"
+```
+
+Or for quick one-liners, skip the file and go straight to Step B.
+
+**Step B — AI copies the execution command to the system clipboard:**
+
+```powershell
+# PowerShell: Copy the py execution command to clipboard
+powershell -Command "Set-Clipboard -Value 'py \"D:/documents/Unreal Projects/game_maze/Content/Python/my_action.py\"'"
+```
+
+For one-liners (no script file needed):
+```powershell
+# PowerShell: Copy an inline Python command to clipboard
+powershell -Command "Set-Clipboard -Value 'py import unreal; unreal.log(\"hello from AI\")'"
+```
+
+For console commands (no Python):
+```powershell
+# PowerShell: Copy a console command to clipboard
+powershell -Command "Set-Clipboard -Value 'stat fps'"
+```
+
+**Step C — User executes in the UE Editor:**
+
+```
+Alt + Tab      → Switch to UE Editor
+~              → Open console
+Ctrl + V       → Paste command
+Enter          → Execute
+~              → Close console
+```
+
+**Step D — AI verifies the result by reading the log file:**
+
+```powershell
+# PowerShell: Read the last 20 game-relevant log lines
+powershell -Command "Get-Content 'D:\documents\Unreal Projects\game_maze\Saved\Logs\game_maze.log' | Select-String -Pattern 'LogTemp|LogPython|PIE:|Maze' | Select-Object -Last 20"
+```
+
+**Complete example — spawn an actor and verify:**
+
+```powershell
+# Step A: Write the script
+powershell -Command "Set-Content -Path 'D:\documents\Unreal Projects\game_maze\Content\Python\spawn_light.py' -Value @'
+import unreal
+sub = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
+light = sub.spawn_actor_from_class(unreal.PointLight, unreal.Vector(150, 150, 250), unreal.Rotator(0, 0, 0))
+if light:
+    light.point_light_component.set_intensity(8000.0)
+    unreal.log(f'Spawned point light: {light.get_name()}')
+'@"
+
+# Step B: Copy execution command to clipboard
+powershell -Command "Set-Clipboard -Value 'py \"D:/documents/Unreal Projects/game_maze/Content/Python/spawn_light.py\"'"
+
+# Step C: User does  Alt+Tab → ~ → Ctrl+V → Enter → ~
+
+# Step D: AI verifies
+powershell -Command "Get-Content 'D:\documents\Unreal Projects\game_maze\Saved\Logs\game_maze.log' | Select-String 'Spawned point light' | Select-Object -Last 1"
+```
+
+### 3.2 Workflow Diagram
 
 ```
 ┌──────────────────┐    ┌────────────────────┐    ┌─────────────────┐
-│ AI identifies     │───→│ AI writes .py file │───→│ AI copies exec  │
-│ needed action     │    │ to Content/Python/ │    │ command to      │
-│                   │    │                    │    │ clipboard       │
+│ A. AI writes .py │───→│ B. AI copies exec  │───→│ C. User does    │
+│ to Content/Python│    │ cmd to clipboard   │    │ Alt+Tab ~ Ctrl+V│
+│ via PowerShell   │    │ via Set-Clipboard  │    │ Enter ~         │
 └──────────────────┘    └────────────────────┘    └────────┬────────┘
                                                            │
                                                   ┌────────┴────────┐
-                                                  │ User executes   │
-                                                  │ in UE console   │
-                                                  └────────┬────────┘
-                                                           │
-                                                  ┌────────┴────────┐
-                                                  │ AI reads log    │
+                                                  │ D. AI reads log │
+                                                  │ via Get-Content │
                                                   │ to verify       │
                                                   └─────────────────┘
 ```
 
-### 3.2 Script Types
+### 3.3 Script Types
 
 **Setup Scripts** — Run once to configure the level:
 ```
@@ -179,7 +257,7 @@ Content/Python/ue_bridge.py           — Reusable function library
 py import unreal; unreal.log(f'Actors: {len(unreal.get_editor_subsystem(unreal.EditorActorSubsystem).get_all_level_actors())}')
 ```
 
-### 3.3 Script Writing Rules
+### 3.4 Script Writing Rules
 
 1. **Use `unreal.get_editor_subsystem()`** — not deprecated `EditorLevelLibrary`
 2. **Use `unreal.load_class(None, '/Script/module.Class')`** — for C++ classes
@@ -187,7 +265,7 @@ py import unreal; unreal.log(f'Actors: {len(unreal.get_editor_subsystem(unreal.E
 4. **Always `unreal.log()` results** — so the AI can verify via the log file
 5. **Handle missing actors gracefully** — check `if actor:` before using
 
-### 3.4 Clipboard Command Preparation
+### 3.5 Clipboard Command Preparation
 
 The AI copies commands to the system clipboard using PowerShell:
 
