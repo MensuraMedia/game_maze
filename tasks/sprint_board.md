@@ -14,11 +14,11 @@
 
 | ID | Task | Agent | Status | Blocks | Blocked By |
 |----|-------|-------|--------|--------|------------|
-| T-006 | Implement collectible system (Blueprints) | 05 Blueprints | Pending | T-010 | T-003, T-004 |
-| T-007 | Set up lighting & atmosphere | 09 Lighting | Pending | T-009 | T-003, T-005 |
-| T-008 | Configure NavMesh & validate solvability | 08 AI/Nav | Pending | T-006 | T-003 |
-| T-009 | Implement footstep audio system | 10 Audio | Pending | — | T-004, T-005 |
-| T-010 | Implement win/lose conditions & game mode | 06 C++ | Pending | T-011 | T-003, T-006 |
+| T-006 | Implement collectible system (Blueprints) | 05 Blueprints | **Done** | T-010 | T-003, T-004 |
+| T-007 | Set up lighting & atmosphere | 09 Lighting | **Done** | T-009 | T-003, T-005 |
+| T-008 | Configure NavMesh & validate solvability | 08 AI/Nav | **Done** | T-006 | T-003 |
+| T-009 | Implement footstep audio system | 10 Audio | **Done** | — | T-004, T-005 |
+| T-010 | Implement win/lose conditions & game mode | 06 C++ | **Done** | T-011 | T-003, T-006 |
 
 ## Sprint 3: UI & Polish
 
