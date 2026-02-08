@@ -651,6 +651,176 @@ run_console_command("stat fps")
 
 ---
 
+## 8. UE Bridge Library (`ue_bridge.py`)
+
+A reusable Python module at `Content/Python/ue_bridge.py` that wraps common operations
+into callable functions. Load once per editor session, then call functions directly.
+
+### Loading the Bridge
+```
+py "D:/documents/Unreal Projects/game_maze/Content/Python/ue_bridge.py"
+```
+
+### Available Functions
+
+| Function | Purpose |
+|----------|---------|
+| `ue_bridge.exec_cmd("command")` | Execute any console command |
+| `ue_bridge.exec_block("cmd1\ncmd2")` | Execute multi-line block |
+| `ue_bridge.find_actor("ClassName")` | Find first actor by class name |
+| `ue_bridge.find_all_actors("Name")` | Find all matching actors |
+| `ue_bridge.list_actors()` | Log every actor in level |
+| `ue_bridge.preset_cinematic()` | Max quality rendering |
+| `ue_bridge.preset_performance()` | Optimized rendering |
+| `ue_bridge.preset_debug()` | Enable FPS, collision, NavMesh overlays |
+| `ue_bridge.preset_debug_off()` | Toggle debug overlays off |
+| `ue_bridge.rebuild_nav()` | Rebuild NavMesh |
+| `ue_bridge.show_nav()` | Toggle NavMesh visualization |
+| `ue_bridge.diagnostic()` | Full level check (all maze actors + GameMode) |
+| `ue_bridge.save_level()` | Save current level |
+
+### Example Chained Session
+```
+py "D:/documents/Unreal Projects/game_maze/Content/Python/ue_bridge.py"
+py ue_bridge.diagnostic()
+py ue_bridge.preset_debug()
+py ue_bridge.rebuild_nav()
+py ue_bridge.save_level()
+```
+
+---
+
+## 9. OS-Level Direct Interaction (Advanced)
+
+For fully automated pipelines where the AI controls the editor without user involvement.
+Based on production-tested methodology from `shortcut_keys_with_code_collaboration.md`.
+
+### 9.1 Window Focus (Win32 API)
+
+The AI must focus the UE Editor before sending keystrokes:
+
+```python
+import win32gui
+
+def focus_unreal_editor(project_name="game_maze"):
+    """Find and focus the Unreal Editor window."""
+    def enum_callback(hwnd, _):
+        if win32gui.IsWindowVisible(hwnd):
+            title = win32gui.GetWindowText(hwnd)
+            if "Unreal Editor" in title:
+                if not project_name or project_name in title:
+                    win32gui.SetForegroundWindow(hwnd)
+                    return False
+        return True
+    win32gui.EnumWindows(enum_callback, None)
+```
+
+**Latency:** 10-50ms | **Reliability:** 99% when window title is unique.
+
+### 9.2 Input Injection Methods
+
+**Method A — PowerShell (Claude Code native):**
+```powershell
+# Copy to clipboard
+powershell -Command "Set-Clipboard -Value 'stat fps'"
+
+# Send keystrokes to active window (requires editor focused)
+powershell -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait('``')"
+```
+
+**Method B — pyautogui (cross-platform):**
+```python
+import pyautogui, pyperclip, time
+
+pyperclip.copy("stat fps\nstat unit")
+pyautogui.press('`')           # ~ open console
+time.sleep(0.15)
+pyautogui.hotkey('ctrl', 'v')  # Paste
+pyautogui.press('enter')       # Execute
+time.sleep(0.3)
+pyautogui.press('`')           # Close console
+```
+
+**Method C — Win32 SendInput (lowest latency, <5ms):**
+```python
+import ctypes
+from ctypes import wintypes
+
+def send_key(vk_code, down=True):
+    """Send a single key event via Win32 SendInput."""
+    class KEYBDINPUT(ctypes.Structure):
+        _fields_ = [("wVk", wintypes.WORD), ("wScan", wintypes.WORD),
+                     ("dwFlags", wintypes.DWORD), ("time", wintypes.DWORD),
+                     ("dwExtraInfo", ctypes.POINTER(ctypes.c_ulong))]
+    class INPUT(ctypes.Structure):
+        _fields_ = [("type", wintypes.DWORD), ("ki", KEYBDINPUT),
+                     ("padding", ctypes.c_ubyte * 8)]
+    inp = INPUT(type=1)
+    inp.ki = KEYBDINPUT(wVk=vk_code, dwFlags=0 if down else 2)
+    ctypes.windll.user32.SendInput(1, ctypes.byref(inp), ctypes.sizeof(inp))
+
+# VK codes: VK_OEM_3=0xC0 (~), VK_CONTROL=0x11, VK_V=0x56, VK_RETURN=0x0D
+```
+
+### 9.3 Unreal Input System Considerations
+
+- UE Slate processes inputs via `FSlateApplication::ProcessKeyDownEvent`
+- Events queue on the game thread — add **50-100ms delays** between keys
+- Modal windows (dialogs, asset browser) can redirect input
+- Custom keybindings: parsed from `Saved/Config/Windows/Editor.ini`
+- Non-US keyboards: rebind console key in `DefaultEngine.ini`:
+  ```ini
+  [/Script/Engine.InputSettings]
+  ConsoleKey=Tilde
+  ```
+
+### 9.4 State Verification via Computer Vision
+
+For fully autonomous agents, verify UI state after actions:
+
+```python
+import pyautogui
+from PIL import Image
+
+# Capture viewport screenshot
+screenshot = pyautogui.screenshot(region=(0, 0, 1920, 1080))
+screenshot.save("viewport_capture.png")
+# Analyze with OCR or pixel sampling to confirm expected state
+```
+
+### 9.5 Alternative Channels
+
+| Channel | Method | Latency | Reliability |
+|---------|--------|---------|-------------|
+| Console + Clipboard | `~ → Ctrl+V → Enter` | 300ms | 99% |
+| Python Script File | `py "path/to/script.py"` | 500ms+ | 98% |
+| Remote Control API | HTTP POST to localhost:30010 | 50ms | 95% |
+| WebSocket IPC | Custom plugin, real-time | <10ms | 90% |
+| DLL Injection | EasyHook/Detours into ProcessEvent | <5ms | 85% |
+
+---
+
+## 10. Skill Integration
+
+The `editor-bridge` skill (`skills/skill_editor_bridge.md`) wraps this entire methodology
+into a repeatable agent capability. Agents should reference it when:
+
+- Verifying level state after code changes
+- Applying rendering presets for visual review
+- Running diagnostics before play-testing
+- Executing multi-step editor operations
+- Rebuilding navigation after geometry changes
+
+**Skill invocation pattern:**
+1. Agent generates the appropriate command/script
+2. Agent uses PowerShell to copy command to clipboard
+3. Agent instructs user: `~ → Ctrl+V → Enter → ~`
+4. Agent instructs follow-up shortcut sequence (e.g., `Alt+P` to play)
+5. User reports Output Log results back to agent
+
+---
+
 *Derived from `shortcut_keys_with_code_collaboration.md` and production AI-UE workflows.*
 *Supplements: `agent_shortcut_reference.md`, `console_commands_reference.md`*
+*Skill: `skills/skill_editor_bridge.md` | Bridge: `Content/Python/ue_bridge.py`*
 *Last updated: 2026-02-07*

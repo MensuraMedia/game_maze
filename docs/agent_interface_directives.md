@@ -12,16 +12,22 @@ methods available on the Windows 11 workstation.
 
 ## Priority Order for Editor Interaction
 
-1. **Python Editor Scripting** — First choice for automation (spawn actors, modify levels,
-   import assets, generate procedural content)
-2. **C++ APIs** — For performance-critical or engine-level changes (custom classes,
+1. **Clipboard-Console Pipeline** — Fastest for live editor control. Agent generates
+   command, copies to clipboard via PowerShell, user executes `~ → Ctrl+V → Enter → ~`.
+   Use `ue_bridge.py` functions for chained operations. See `docs/clipboard_console_automation.md`.
+2. **Python Editor Scripting** — First choice for complex automation (spawn actors, modify
+   levels, import assets, generate procedural content). Execute via `py "path/to/script.py"`.
+3. **C++ APIs** — For performance-critical or engine-level changes (custom classes,
    components, systems)
-3. **Blueprints** — For rapid prototyping and gameplay logic iteration
-4. **Remote Control API** — For external tool/AI integration via HTTP/WebSocket
-5. **Console Commands** — For runtime debugging, NavMesh rebuilds, rendering toggles
-6. **Commandlets** — For batch processing and automated testing
-7. **Manual with Instructions** — When direct AI control isn't feasible, provide precise
-   step-by-step instructions for the user
+4. **Blueprints** — For rapid prototyping and gameplay logic iteration
+5. **Remote Control API** — For external tool/AI integration via HTTP/WebSocket
+6. **Console Commands** — For runtime debugging, NavMesh rebuilds, rendering toggles
+7. **Commandlets** — For batch processing and automated testing
+8. **OS-Level Input Injection** — For fully automated pipelines: Win32 SendInput,
+   pyautogui, or keyboard library for direct keystroke simulation. See
+   `docs/clipboard_console_automation.md` section 9.
+9. **Manual with Instructions** — When direct AI control isn't feasible, provide precise
+   step-by-step shortcut key sequences from `docs/agent_shortcut_reference.md`
 
 ## Interface Discovery Protocol
 

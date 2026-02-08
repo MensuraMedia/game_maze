@@ -37,6 +37,23 @@ Task breakdowns live in `tasks/`. The Team Lead maintains the active sprint boar
 ## Skills
 Reusable skill definitions live in `skills/`. Each skill maps to a repeatable capability.
 
+### Editor Bridge Skill (`skills/skill_editor_bridge.md`)
+The `editor-bridge` skill enables direct AI-to-UE-Editor interaction via the clipboard
+pipeline. It uses a Python bridge library (`Content/Python/ue_bridge.py`) that wraps
+console commands, actor queries, rendering presets, and diagnostics into callable
+functions. **All agents** may invoke this skill when they need to:
+- Execute console commands or Python scripts in the live editor
+- Apply rendering presets (cinematic, performance, debug)
+- Run diagnostics to verify level state (actors, GameMode, NavMesh)
+- Rebuild navigation or toggle debug overlays
+
+**Interaction pathway:** Agent generates command → PowerShell copies to clipboard →
+User presses `~ → Ctrl+V → Enter → ~` in UE Editor → Output Log confirms result.
+
+See `docs/clipboard_console_automation.md` sections 8-10 for OS-level automation
+methods (Win32 SendInput, pyautogui, window focus APIs) applicable to fully
+automated agent pipelines.
+
 ## Conventions
 - UE5 First Person template as starting base (already created at UE5 project path)
 - C++ source goes in `D:\documents\Unreal Projects\game_maze\Source\`
