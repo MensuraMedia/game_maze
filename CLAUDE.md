@@ -26,7 +26,10 @@ All agents must interface with the UE Editor programmatically where possible.
 - **Interface Reference:** `docs/UE_Interface_Reference.md` — comprehensive API/tool reference
 - **Interface Directives:** `docs/agent_interface_directives.md` — mandatory agent behavior
 - **Python Templates:** `docs/python_automation_templates.md` — ready-to-use automation scripts
-- Primary methods: Python scripting, C++ APIs, Blueprints, Remote Control API, Console commands
+- **Clipboard-Console Automation:** `docs/clipboard_console_automation.md` — **advanced direct-control reference** for executing generated commands, scripts, and shortcut sequences inside the UE Editor via the clipboard pipeline (`~` console → `Ctrl+V` → `Enter`). Contains 12 concrete scenarios, compound workflow patterns, error recovery, and per-agent examples. Agents should consult this when they need to verify, debug, or modify the live editor state without restarting.
+- **Per-Agent Shortcuts:** `docs/agent_shortcut_reference.md` — targeted shortcut summaries per agent role
+- **Console Commands:** `docs/console_commands_reference.md` — domain-organized console command catalog
+- Primary methods: Python scripting, C++ APIs, Blueprints, Remote Control API, Console commands, Clipboard-Console pipeline
 
 ## Task Tracking
 Task breakdowns live in `tasks/`. The Team Lead maintains the active sprint board.
