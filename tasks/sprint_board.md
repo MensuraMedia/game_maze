@@ -34,9 +34,9 @@
 
 | ID | Task | Agent | Status | Blocks | Blocked By |
 |----|-------|-------|--------|--------|------------|
-| T-016 | Full integration build & playtest | 00 Conductor | Pending | T-017 | T-011–T-015 |
-| T-017 | Bug fixing & performance optimization | 01 Team Lead + 06 C++ | Pending | T-018 | T-016 |
-| T-018 | Final polish pass & release build | 00 Conductor | Pending | — | T-017 |
+| T-016 | Full integration build & playtest | 00 Conductor | **Done** | T-017 | T-011–T-015 |
+| T-017 | Bug fixing & performance optimization | 01 Team Lead + 06 C++ | **Done** | T-018 | T-016 |
+| T-018 | Final polish pass & release build | 00 Conductor | **Done** | — | T-017 |
 
 ---
 *Maintained by Agent 01 (Team Lead). Updated by Conductor after each cycle.*
